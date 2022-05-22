@@ -16,6 +16,9 @@ echo GCC and Watcom kernels have all been built
 find _output -ls
 
 cd test
+ls -l
+chmod a+x test.sh
+ls -l
 if ! ./test.sh ../_output/gcc/KGC${KVER}.sys diskgc bootgc 'boot gcc: '
 then
   echo GCC boot test failed
