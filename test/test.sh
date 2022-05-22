@@ -103,7 +103,7 @@ shift
   "$options_i_lmacros" \
   -D_PAYLOADFILE="::rename,'$KERNELPATHNAME',KERNEL.SYS,fdconfig.sys,test.com,result.txt" \
   -D_BOOTFILE="'$BOOT.bin'" \
-  -D_WARN_DEFAULT_OFF=1 \
+  -w-other -D_WARN_DEFAULT_OFF=1 \
   -D_WARN_TOOMANYFAT=0 -D_WARN_ALIGNDATA=0 \
   $options_hdimage -D_MBR_PART_TYPE="$pitype" \
   -D_BPE="$bpe" -D_SPC="$spc" -D_SPI="$spi" \
@@ -116,7 +116,7 @@ shift
 
 pgid="$(ps -o pgid= $$)"
 function handle_timeout_process() {
-  stty sane
+  stty sane 2> /dev/null > /dev/null
   ((debug)) && ps -e -o pgid=,comm=,pid= | grep -E "^\s*$pgid "
   pidlist="$(ps -e -o pgid=,comm=,pid= |
     grep -E "^\s*$pgid " |
