@@ -3387,9 +3387,11 @@ VOID ASMCFUNC int2F_12_handler(struct int2f12regs FAR *pr)
 
     default:
 not_implemented:
+#ifdef DEBUG
         put_string("unimplemented internal dos function INT2F/12");
         put_unsigned(r.AL, 16, 2);
         put_string("\n");
+#endif
         goto error_invalid;
   }
   return;
